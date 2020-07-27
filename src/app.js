@@ -11,7 +11,7 @@ const viewsDirectoryPath = path.join(__dirname, "../views");
 app.use(express.static(publicDirectoryPath));
 
 app.set("view engine", "hbs");
-app.get("views", viewsDirectoryPath);
+app.set("views", viewsDirectoryPath);
 
 app.get("", (req, res) => {
   res.render("index", {
