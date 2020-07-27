@@ -3,6 +3,7 @@ const path = require("path");
 const exchange = require("./utils/exchange");
 
 const app = express();
+const port = process.env.PORT || 3000;
 
 const publicDirectoryPath = path.join(__dirname, "../public");
 const viewsDirectoryPath = path.join(__dirname, "../views");
@@ -10,7 +11,7 @@ const viewsDirectoryPath = path.join(__dirname, "../views");
 app.use(express.static(publicDirectoryPath));
 
 app.set("view engine", "hbs");
-//app.set("vies")
+app.get("views", viewsDirectoryPath);
 
 app.get("", (req, res) => {
   res.render("index", {
@@ -38,6 +39,6 @@ app.get("*", (req, res) => {
   });
 });
 
-app.listen(3000, () => {
+app.listen(port, () => {
   console.log("server is up on port 3000");
 });

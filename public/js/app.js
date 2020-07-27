@@ -18,26 +18,23 @@ form.addEventListener("submit", (e) => {
   //
   messageOne.textContent = "";
   if (FromCurrency && ToCurrency) {
-    fetch(
-      "http://localhost:3000/exchange?from=" +
-        FromCurrency +
-        "&to=" +
-        ToCurrency
-    ).then((response) => {
-      response.json().then((data) => {
-        if (typeof data == "number") {
-          messageOne.textContent =
-            amount +
-            " " +
-            FromCurrency +
-            " = " +
-            amount * data +
-            " " +
-            ToCurrency;
-        } else {
-          messageOne.textContent = data;
-        }
-      });
-    });
+    fetch("/exchange?from=" + FromCurrency + "&to=" + ToCurrency).then(
+      (response) => {
+        response.json().then((data) => {
+          if (typeof data == "number") {
+            messageOne.textContent =
+              amount +
+              " " +
+              FromCurrency +
+              " = " +
+              amount * data +
+              " " +
+              ToCurrency;
+          } else {
+            messageOne.textContent = data;
+          }
+        });
+      }
+    );
   }
 });
